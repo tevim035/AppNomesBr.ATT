@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppNomesBr.Pages.RankingNomesBrasileiros"
+             Title="Ranking Nomes BR">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+
+            <!-- Campos de filtro -->
+            <Frame BorderColor="LightGray" Padding="10" CornerRadius="8">
+                <VerticalStackLayout Spacing="8">
+
+                    <Label Text="Filtros de Pesquisa" 
+               FontAttributes="Bold" 
+               FontSize="18" 
+               HorizontalOptions="Center" />
+
+                    <!-- Campo de cidade -->
+                    <Entry x:Name="CidadeEntry"
+               Placeholder="Informe o nome da cidade/município"
+               Keyboard="Text" />
+
+                    <!-- Novo campo: Estado (UF) -->
+                    <Picker x:Name="EstadoPicker"
+                Title="Selecione o estado (UF)">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>AC</x:String>
+                                <x:String>AL</x:String>
+                                <x:String>AP</x:String>
+                                <x:String>AM</x:String>
+                                <x:String>BA</x:String>
+                                <x:String>CE</x:String>
+                                <x:String>DF</x:String>
+                                <x:String>ES</x:String>
+                                <x:String>GO</x:String>
+                                <x:String>MA</x:String>
+                                <x:String>MT</x:String>
+                                <x:String>MS</x:String>
+                                <x:String>MG</x:String>
+                                <x:String>PA</x:String>
+                                <x:String>PB</x:String>
+                                <x:String>PR</x:String>
+                                <x:String>PE</x:String>
+                                <x:String>PI</x:String>
+                                <x:String>RJ</x:String>
+                                <x:String>RN</x:String>
+                                <x:String>RS</x:String>
+                                <x:String>RO</x:String>
+                                <x:String>RR</x:String>
+                                <x:String>SC</x:String>
+                                <x:String>SP</x:String>
+                                <x:String>SE</x:String>
+                                <x:String>TO</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <!-- Picker de sexo -->
+                    <Picker x:Name="SexoPicker"
+                Title="Selecione o sexo">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Masculino</x:String>
+                                <x:String>Feminino</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <!-- Botão de atualização -->
+                    <Button Text="Atualizar Ranking"
+                BackgroundColor="LightBlue"
+                Clicked="BtnAtualizar_Clicked" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+
+            <!-- Listagem -->
+            <CollectionView x:Name="GrdNomesBr" 
+                            VerticalOptions="FillAndExpand">
+
+                <CollectionView.Header>
+                    <Grid Padding="5" BackgroundColor="LightBlue">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Nomes" FontSize="18" FontAttributes="Bold" Grid.Column="0" />
+                        <Label Text="Ocorrências" FontSize="18" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Pos. Ranking" FontSize="18" FontAttributes="Bold" Grid.Column="2" />
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Nome}" FontSize="14" FontAttributes="Bold" Grid.Column="0" />
+                            <Label Text="{Binding Frequencia}" FontSize="14" FontAttributes="Bold" Grid.Column="1" />
+                            <Label Text="{Binding Ranking}" FontSize="14" FontAttributes="Bold" Grid.Column="2" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
